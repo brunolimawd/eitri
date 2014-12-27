@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "name": "Eitri",
+  "launch_path": "index.html",
+  "description": "Front-end framework made with ♥ by humans",
+  "icons": {
+    "16": "img/content/icon-16x16.png"
+    "128": "img/content/icon-128x128.png"
+  },
+  "developer": {
+    "name": "humans",
+    "url": "https://github.com/brunolimawd/eitri"
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "pt-BR",
+  "permissions": {
+  },
+  "locales": {
+    "en": {
+      "name": "Eitri",
+      "description": "Front-end framework made with ♥ by humans"
+    },
+    "pt-BR": {
+      "name": "Eitri",
+      "description": "Front-end framework feito com ♥ por humanos"
+    }
+  }
+}

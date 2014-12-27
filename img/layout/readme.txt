@@ -1,0 +1,1 @@
+Eitri Framework - images layout

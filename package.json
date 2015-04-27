@@ -5,11 +5,14 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "npm run lint:jshint",
-    "lint:jshint": "jshint --reporter node_modules/jshint-stylish/stylish.js js/**.js",
-    "build:css": "lessc --source-map=css/style.map --source-map-url=style.map css/style.less | autoprefixer --annotation 'style.map' -b 'ie >= 8, ie_mob >= 10, ff >= 15, chrome >= 30, safari >= 5, opera >= 23, ios >= 6, android >= 2.3, bb >= 10' > css/style.css",
-    "build:prefixer": "autoprefixer css/**.css",
-    "build": "npm run build:css"
+    "lint:jshint": "jshint --reporter node_modules/jshint-stylish/stylish.js scripts/app/**.js",
+    "build:less": "lessc --source-map-url=style.map styles/less/style.less > styles/dist/style.css",
+    "build:prefixer": "autoprefixer --annotation 'style.map' -b 'ie >= 8, ie_mob >= 10, ff >= 15, chrome >= 30, safari >= 5, opera >= 23, ios >= 6, android >= 2.3, bb >= 10' styles/dist/style.css",
+    "build:css": "npm run build:less && npm run build:prefixer",
+    "build": "npm run build:css",
+    "watch:js": "watch 'npm run lint:jshint' scripts/app/ --wait=0",
+    "watch:css": "watch 'npm run build:css' styles/less/ --wait=0",
+    "watch": "parallelshell 'npm run watch:js' 'npm run watch:css'"
   },
   "repository": {
     "type": "git",
@@ -35,10 +38,13 @@
     "gulp-less": "^1.3.5",
     "gulp-load-plugins": "^0.6.0",
     "gulp-menu": "^0.2.2",
+    "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.0.1",
     "jshint": "^2.6.3",
     "jshint-stylish": "^1.0.1",
     "less": "^2.4.0",
-    "psi": "^0.1.2"
+    "parallelshell": "^1.1.1",
+    "psi": "^0.1.2",
+    "watch": "^0.14.0"
   }
 }

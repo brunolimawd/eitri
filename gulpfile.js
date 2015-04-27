@@ -49,12 +49,12 @@ gulp.task('images-layout', function () {
 
 // copilando o less e adicionando os prefix
 gulp.task('styles', function () {
-  return gulp.src(['css/*.less'])
+  return gulp.src(['assets/styles/less/*.less'])
     .pipe(plugin.changed('styles', {extension: '.less'}))
     .pipe(plugin.less().on('error', console.error.bind(console)))
     .pipe(plugin.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(plugin.csso())
-    .pipe(gulp.dest('css'));
+    .pipe(gulp.dest('assets/styles/dist'));
 });
 
 // observando mudanças para da reload
@@ -64,8 +64,8 @@ gulp.task('serve', ['styles'], function () {
     proxy: 'localhost:8080'
   });
 
-  gulp.watch(['css/*.less'], ['styles']);
-  gulp.watch(['css/*.css'], reload);
+  gulp.watch(['assets/styles/less/*.less'], ['styles']);
+  gulp.watch(['assets/styles/dist/*.css'], reload);
   gulp.watch(['js/app/*.js'], ['jshint']);
   gulp.watch(['img/content/*', 'img/layout/*'], reload);
 });
